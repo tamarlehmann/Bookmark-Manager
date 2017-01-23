@@ -26,3 +26,7 @@ As a user
 I want to filter links by tag
 So I can browse related links
 ```
+
+## Domain Model
+
+[Click here to see Domain Model](https://app.ardoq.com/presentation/makersacademyjan2017/587e161472fa6d218cea11a4)
