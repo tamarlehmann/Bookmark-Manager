@@ -30,4 +30,10 @@ feature "FEATURE: add new link" do
     end
   end
 
+  scenario "can add new link with multiple tags" do
+    sign_in
+    create_link("Makers Academy", "www.makersacademy.com", 'Education', 'Coding', 'Pizza')
+    expect(Link.last.tags.count).to eq 3
+  end
+
 end
