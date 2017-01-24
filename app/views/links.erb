@@ -1,3 +1,9 @@
+<form action="/links/new" method="get">
+  <button type="submit" name="add_new_link" id="add_new_link">Add New Link</button>
+</form>
+
 <ul id="links">
-  <%= @links.map { |link| "<li>#{link.title} #{link.url}</li>" }.join %> 
+  <% @links.each do |link| %>
+    <li> Title: <%= link.title %> URL: <%= link.url %></li>
+  <% end %>
 </ul>
