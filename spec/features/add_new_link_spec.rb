@@ -7,7 +7,7 @@ feature "FEATURE: add new link" do
     end
   end
 
-  scenario "can access new link page" do
+  scenario "can add new link" do
     sign_in
     click_button('add_new_link')
     fill_in 'link_title', :with => 'BBC'
@@ -15,6 +15,18 @@ feature "FEATURE: add new link" do
     click_button('submit_link')
     within 'ul#links' do
       expect(page).to have_content('BBC')
+    end
+  end
+
+  scenario "can add new link with a tag" do
+    sign_in
+    click_button('add_new_link')
+    fill_in 'link_title', :with => 'BBC'
+    fill_in 'link_url', :with => "www.bbc.co.uk"
+    fill_in 'link_tags', :with => "News"
+    click_button('submit_link')
+    within 'ul#links' do
+      expect(page).to have_content('Tags: News')
     end
   end
 
