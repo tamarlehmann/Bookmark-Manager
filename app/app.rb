@@ -21,7 +21,7 @@ class BookmarkManager < Sinatra::Base
     link = Link.create(title: params[:link_title], url: params[:link_url])
     params[:link_tags].split(",").each {
       |tag|
-      new_tag = Tag.first_or_create(:name => tag)
+      new_tag = Tag.first_or_create(:name => tag.strip)
       link.tags << new_tag
     }
     link.save
