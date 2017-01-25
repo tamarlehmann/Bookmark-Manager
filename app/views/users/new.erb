@@ -1,6 +1,6 @@
 <form class="" action="/users" method="post">
   <label for="user_email">Email</label>
-  <input type="text" name="user_email" value="">
+  <input type="text" name="user_email" value=<%= "\"#{@user_email}\"" %>>
   <label for="user_password">Password</label>
   <input type="password" name="user_password" value="">
   <label for="password_confirmation">Confirm Password</label>

@@ -17,5 +17,7 @@ feature "FEATURE: sign up" do
     fill_in 'password_confirmation', :with => "wrongpassword"
     click_button 'sign_up'
     expect(User.all.count).to eq 0
+    expect(page.current_path).to eq "/users/new"
+    expect(page).to have_content "Password and confirmation password do not match"
   end
 end
