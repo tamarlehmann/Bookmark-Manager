@@ -1,5 +1,5 @@
 def sign_in
-  visit('/')
+  visit('/links')
 end
 
 def create_link(title, url, *tags)

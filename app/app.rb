@@ -5,10 +5,22 @@ require './app/dmconfig.rb'
 class BookmarkManager < Sinatra::Base
 
   get '/' do
+    redirect '/sign_up'
+  end
+
+  get '/sign_up' do
+    erb :sign_up
+  end
+
+  post '/sign_up' do
+    p params
+    user = User.create(email: params[:user_email], password: params[:user_password])
+    @user_email = user.email
     redirect '/links'
   end
 
   get '/links' do
+    @user_email = User.last.email if User.last
     @links = Link.all
     erb :links
   end
