@@ -4,23 +4,32 @@ require './app/dmconfig.rb'
 
 class BookmarkManager < Sinatra::Base
 
+  enable :sessions
+  set :session_secret, 'super secret'
+
+  helpers do
+    def current_user
+      @user ||= User.get(session[:user_id])
+    end
+  end
+
   get '/' do
-    redirect '/sign_up'
+    redirect '/users/new'
   end
 
-  get '/sign_up' do
-    erb :sign_up
+  get '/users/new' do
+    erb :'users/new'
   end
 
-  post '/sign_up' do
-    p params
+  post '/users' do
     user = User.create(email: params[:user_email], password: params[:user_password])
-    @user_email = user.email
+    session[:user_id] = user.id
     redirect '/links'
   end
 
   get '/links' do
-    @user_email = User.last.email if User.last
+    current_user
+    @user_email = @user.email
     @links = Link.all
     erb :links
   end

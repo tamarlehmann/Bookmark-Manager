@@ -1,5 +1,8 @@
 def sign_in
-  visit('/links')
+  visit('/')
+  fill_in 'user_email', :with => "test@gmail.com"
+  fill_in 'user_password', :with => "password"
+  click_button 'sign_up'
 end
 
 def create_link(title, url, *tags)
