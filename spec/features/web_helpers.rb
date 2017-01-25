@@ -2,6 +2,7 @@ def sign_in
   visit('/')
   fill_in 'user_email', :with => "test@gmail.com"
   fill_in 'user_password', :with => "password"
+  fill_in 'password_confirmation', :with => "password"
   click_button 'sign_up'
 end
 

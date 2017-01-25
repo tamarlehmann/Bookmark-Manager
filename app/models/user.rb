@@ -1,4 +1,5 @@
 require 'bcrypt'
+require 'dm-validations'
 
 class User
 
@@ -9,5 +10,8 @@ class User
   property :id, Serial
   property :email, String
   property :password, BCryptHash, :length => 250
+  attr_accessor :password_confirmation
+
+  validates_confirmation_of :password
 
 end
