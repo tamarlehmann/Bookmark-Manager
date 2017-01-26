@@ -14,10 +14,24 @@ class User
       :format => "Please enter a valid email address",
       :is_unique => "A user with this email address already exists"
     }
-  property :password, BCryptHash, :length => 250
+  property :password_digest, Text
+  attr_reader :password
   attr_accessor :password_confirmation
 
   validates_confirmation_of :password
-  #validates_format_of :email, :as => :email_address
+
+  def password=(password)
+    @password = password
+    self.password_digest = BCrypt::Password.create(password)
+  end
+
+  def self.authenticate(email, password)
+    user = first(email: email)
+    if user && BCrypt::Password.new(user.password_digest) == password
+      user
+    else
+      nil
+    end
+  end
 
 end
