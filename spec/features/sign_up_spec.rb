@@ -18,7 +18,7 @@ feature "FEATURE: sign up" do
     click_button 'sign_up'
     expect(User.all.count).to eq 0
     expect(page.current_path).to eq "/users"
-    expect(page).to have_content "Password and confirmation password do not match"
+    expect(page).to have_content "Password does not match the confirmation"
   end
 
   scenario "cannot sign up without entering email" do
@@ -27,6 +27,7 @@ feature "FEATURE: sign up" do
     fill_in 'password_confirmation', :with => "password"
     click_button 'sign_up'
     expect(User.all.count).to eq 0
+    expect(page).to have_content "Please enter your email address"
   end
 
   scenario "user cannot sign in with an email address in an invalid format" do
@@ -36,5 +37,14 @@ feature "FEATURE: sign up" do
     fill_in 'password_confirmation', :with => "password"
     click_button 'sign_up'
     expect(User.all.count).to eq 0
+    expect(page).to have_content "Please enter a valid email address"
   end
+
+  scenario "user cannot sign up with an already registered email address" do
+    sign_in
+    sign_in
+    expect(User.all.count).to eq 1
+    expect(page).to have_content "A user with this email address already exists"
+  end
+
 end

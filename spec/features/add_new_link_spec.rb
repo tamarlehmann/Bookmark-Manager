@@ -32,7 +32,11 @@ feature "FEATURE: add new link" do
 
   scenario "can add new link with multiple tags" do
     sign_in
-    create_link("Makers Academy", "www.makersacademy.com", 'Education', 'Coding', 'Pizza')
+    click_button('add_new_link')
+    fill_in 'link_title', :with => 'Makers Academy'
+    fill_in 'link_url', :with => "www.makersacademy.com"
+    fill_in 'link_tags', :with => "Education, Coding, Pizza"
+    click_button('submit_link')
     expect(Link.last.tags.count).to eq 3
   end
 
