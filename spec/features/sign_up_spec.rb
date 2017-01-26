@@ -20,4 +20,21 @@ feature "FEATURE: sign up" do
     expect(page.current_path).to eq "/users"
     expect(page).to have_content "Password and confirmation password do not match"
   end
+
+  scenario "cannot sign up without entering email" do
+    visit('/')
+    fill_in 'user_password', :with => "password"
+    fill_in 'password_confirmation', :with => "password"
+    click_button 'sign_up'
+    expect(User.all.count).to eq 0
+  end
+
+  scenario "user cannot sign in with an email address in an invalid format" do
+    visit('/')
+    fill_in 'user_email', :with => "test@gmail"
+    fill_in 'user_password', :with => "password"
+    fill_in 'password_confirmation', :with => "password"
+    click_button 'sign_up'
+    expect(User.all.count).to eq 0
+  end
 end
