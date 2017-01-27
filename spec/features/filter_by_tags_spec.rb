@@ -1,6 +1,6 @@
 feature 'FEATURE: Can filter by tags' do
   scenario 'Can see links for specific tags' do
-    sign_in
+    sign_up
     click_button('add_new_link')
     fill_in 'link_title', :with => 'Makers Academy'
     fill_in 'link_url', :with => "www.makersacademy.com"

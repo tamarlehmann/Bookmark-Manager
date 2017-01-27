@@ -1,16 +1,10 @@
 feature "FEATURE: sign in" do
-    let!(:user) do
-      User.create(email: 'test@gmail.com',
-                password: 'password',
-                password_confirmation: 'password')
-    end
-
-  scenario "sign in with email and password" do
-    visit('/sessions/new')
-    fill_in 'user_email', :with => "test@gmail.com"
-    fill_in 'user_password', :with => "password"
-    click_button 'sign_in'
+    let!(:user) { User.create(email: 'test@gmail.com',password: 'password',
+              password_confirmation: 'password')}
+              
+  scenario "sign in with correct email and password" do
+    sign_in(email: user.email, password: user.password)
     expect(page.current_path).to eq "/links"
-    expect(page).to have_content "Welcome, test@gmail.com"
+    expect(page).to have_content "Welcome, #{user.email}"
   end
 end
