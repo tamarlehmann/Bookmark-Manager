@@ -1,6 +1,7 @@
 ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra-partial'
 require './app/dmconfig.rb'
 
 class BookmarkManager < Sinatra::Base
@@ -9,6 +10,7 @@ class BookmarkManager < Sinatra::Base
   enable :sessions
   set :session_secret, 'super secret'
   register Sinatra::Flash
+  register Sinatra::Partial
 
   helpers do
     def current_user

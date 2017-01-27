@@ -6,13 +6,21 @@
 
   <body>
     <% if current_user %>
-      Welcome, <%= current_user.email %>!
+    <div>
+      Welcome <%= current_user.email %>!
         <form method="post" action="/sessions">
           <input type="hidden" name="_method" value="delete">
           <input type="submit" id="sign_out" value="Sign out">
-        <form>
+        </form>
+      </div>
+      <% end %>
+      <% if flash[:notice] %>
+        <div id = 'notice'>
+          <%= flash[:notice] %>
+        </div>
       <% end %>
       <% if flash[:errors] && !flash[:errors].empty? %>
+      <div>
       Sorry, there were the following problems with your input:
       <ul id='errors'>
         <% flash[:errors].each do |error| %>
@@ -20,11 +28,7 @@
           <% end %>
       </ul>
     <% end %>
-    <% if flash[:notice] %>
-      <div id = 'notice'>
-        <%= flash[:notice] %>
-      </div>
-    <% end %>
+  </div>
       <%= yield %>
   </body>
 </html>

@@ -10,6 +10,7 @@ gem 'dm-postgres-adapter'
 gem 'dm-transactions'
 gem 'bcrypt'
 gem 'sinatra-flash'
+gem 'sinatra-partial'
 
 group :test do
   gem 'rspec'
