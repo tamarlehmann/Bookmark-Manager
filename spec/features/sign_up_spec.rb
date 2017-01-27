@@ -7,7 +7,7 @@ feature "FEATURE: sign up" do
   end
 
   scenario "enter wrong password in the password confirmation" do
-    visit('/')
+    visit('/users/new')
     fill_in 'user_email', :with => "test@gmail.com"
     fill_in 'user_password', :with => "password"
     fill_in 'password_confirmation', :with => "wrongpassword"
@@ -18,7 +18,7 @@ feature "FEATURE: sign up" do
   end
 
   scenario "cannot sign up without entering email" do
-    visit('/')
+    visit('/users/new')
     fill_in 'user_password', :with => "password"
     fill_in 'password_confirmation', :with => "password"
     click_button 'sign_up'
@@ -27,7 +27,7 @@ feature "FEATURE: sign up" do
   end
 
   scenario "user cannot sign in with an email address in an invalid format" do
-    visit('/')
+    visit('/users/new')
     fill_in 'user_email', :with => "test@gmail"
     fill_in 'user_password', :with => "password"
     fill_in 'password_confirmation', :with => "password"

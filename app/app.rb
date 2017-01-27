@@ -1,10 +1,12 @@
 ENV['RACK_ENV'] ||= 'development'
 require 'sinatra/base'
 require 'sinatra/flash'
+require 'sinatra/partial'
 require './app/dmconfig.rb'
 
   # start the server if ruby file executed directly
   BookmarkManager.run! if $0 == 'app/app.rb'
+
 
 require_relative 'server'
 require_relative 'controllers/sessions'

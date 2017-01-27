@@ -1,10 +1,8 @@
 class BookmarkManager < Sinatra::Base
 
 get '/links' do
-  current_user
-  #@user_email = current_user ? @user.email : ""
   @links = Link.all
-  erb :links
+  erb :'links/index'
 end
 
 get '/links/new' do
